@@ -1,12 +1,4 @@
 services:
-  init-permissions:
-    image: alpine
-    user: root
-    volumes:
-      - paperclip-data:/paperclip
-      - projects:/projects
-    command: sh -c "mkdir -p /paperclip/instances/default /paperclip/projects && chmod 777 /paperclip/instances/default /paperclip/projects"
-    
   db:
     image: postgres:17-alpine
     environment:
@@ -40,8 +32,6 @@ services:
       - paperclip-data:/paperclip
       - projects:/projects
     depends_on:
-      init-permissions:
-        condition: service_completed_successfully
       db:
         condition: service_healthy
 
