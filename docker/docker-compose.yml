@@ -40,6 +40,8 @@ services:
       - paperclip-data:/paperclip
       - projects:/projects
     depends_on:
+      init-permissions:
+        condition: service_completed_successfully
       db:
         condition: service_healthy
 
