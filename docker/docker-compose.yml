@@ -5,7 +5,7 @@ services:
     volumes:
       - paperclip-data:/paperclip
       - projects:/projects
-    command: chmod -R 777 /paperclip && chmod -R 777 /projects
+    command: sh -c "chmod -R 777 /paperclip /projects"
     
   db:
     image: postgres:17-alpine
