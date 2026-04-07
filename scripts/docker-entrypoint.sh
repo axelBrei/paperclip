@@ -26,4 +26,7 @@ if [ "$changed" = "1" ]; then
     chown -R node:node /paperclip
 fi
 
+mkdir -p /paperclip/instances/default /paperclip/projects /projects
+chown -R node:node /paperclip/instances/default /paperclip/projects /projects
+
 exec gosu node "$@"
