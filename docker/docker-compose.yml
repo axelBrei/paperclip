@@ -1,4 +1,12 @@
 services:
+  init-permissions:
+    image: alpine
+    user: root
+    volumes:
+      - paperclip-data:/paperclip
+      - projects:/projects
+    command: chmod -R 777 /paperclip && chmod -R 777 /projects
+    
   db:
     image: postgres:17-alpine
     environment:
@@ -30,10 +38,12 @@ services:
       BETTER_AUTH_SECRET: "${BETTER_AUTH_SECRET:?BETTER_AUTH_SECRET must be set}"
     volumes:
       - paperclip-data:/paperclip
+      - projects:/projects
     depends_on:
       db:
         condition: service_healthy
 
 volumes:
+  projects:
   pgdata:
   paperclip-data:
