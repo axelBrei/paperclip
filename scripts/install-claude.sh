@@ -22,3 +22,12 @@ fi
 echo "Setting up Claude Code token..."
 claude setup-token "${CLAUDE_CODE_OAUTH_TOKEN}"
 echo "Token configured successfully."
+
+echo "Setting up Atlassian MCP..."
+claude mcp remove atlassian
+claude mcp add atlassian \
+  --transport http \
+  "https://mcp.atlassian.com/v1/mcp" \
+  --header "Authorization: Basic ${ATLASSIAN_API_TOKEN}"
+
+echo "Atlassian MCP configured successfully."
